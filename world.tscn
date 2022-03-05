@@ -32,15 +32,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="debug"]
+[node name="VBoxContainer" type="VBoxContainer" parent="debug"]
 anchor_right = 1.0
-margin_bottom = 14.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="debug/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 99.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="legend_states" type="Label" parent="debug/HBoxContainer"]
+[node name="legend_states" type="Label" parent="debug/VBoxContainer/HBoxContainer"]
 margin_right = 107.0
 margin_bottom = 99.0
 text = "States:
@@ -50,13 +57,27 @@ text = "States:
 3 - FALLING
 4 - CONTROLLED"
 
-[node name="states" type="Label" parent="debug/HBoxContainer"]
+[node name="states" type="Label" parent="debug/VBoxContainer/HBoxContainer"]
 margin_left = 111.0
 margin_top = 42.0
 margin_right = 1024.0
 margin_bottom = 56.0
 size_flags_horizontal = 3
 text = "current_state"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="debug/VBoxContainer"]
+margin_top = 103.0
+margin_right = 1024.0
+margin_bottom = 202.0
+text = "Place the object here, be careful not to throw yourself nor the object out of the game screen.
+
+
+
+
+Q to switch player, E to switch environment. F to reset."
 __meta__ = {
 "_edit_use_anchors_": false
 }

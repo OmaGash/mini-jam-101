@@ -4,7 +4,10 @@ func _ready():
 	g.connect("level_completed", self, "level_completed")
 
 func _process(delta):
-	$HBoxContainer/states.text = "States: " + str($"../player".current_state)
+	if Input.is_action_just_pressed("reset"):
+		get_tree().change_scene("res://world.tscn")
+	
+	$VBoxContainer/HBoxContainer/states.text = "States: " + str($"../player".current_state)
 
 func level_completed():
 	$victory.popup_centered()
