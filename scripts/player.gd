@@ -1,10 +1,12 @@
 extends KinematicBody2D
 
 export var speed = 250#Movement speed
+export var mass = 50
 export var gravity = 50#Gravity Falls
 export var jump = 1000#Jump Force
 var velocity: Vector2
 var current_state = []#All the states the player is currently in
+var current_color = 0#0 is green, 1 is red
 enum {
 	STATE_IDLE,#0
 	STATE_WALK,#1
@@ -26,6 +28,7 @@ func _ready():
 func _physics_process(delta):
 	velocity.y += gravity
 	
+	hover()
 	if current_state.size() <= 0:#When it's not in any other states, put in idle by default.
 		add_state(STATE_IDLE)
 	else:
@@ -66,6 +69,24 @@ func move():#Controls section
 		velocity.x = 0
 		remove_state(STATE_WALK)
 
-
+func control():
+	if current_state.has(STATE_CONTROLLED): return#Don't run if already stunned.
+	add_state(STATE_CONTROLLED)
+	$time.show()
+	$control.start()
+	while !$control.is_stopped():
+		$time.text = str(int($control.time_left)+1)
+		yield(get_tree(), "idle_frame")
+	$time.hide()
+	
+func hover():#Handles the floaty floaty
+	
+	if $hover.is_colliding():
+		if $hover.get_collider().get("current_state") != current_color:
+			velocity.y = -jump/5
+			gravity = mass/20
+		else:
+			gravity = mass
+	
 func _on_control_timeout():
 	remove_state(STATE_CONTROLLED)
