@@ -7,6 +7,7 @@ export var jump = 1000#Jump Force
 var velocity: Vector2
 var current_state = []#All the states the player is currently in
 var current_color = 0#0 is green, 1 is red
+var next_color: Color = Color.green#Green default
 enum {
 	STATE_IDLE,#0
 	STATE_WALK,#1
@@ -55,6 +56,17 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector2(0,-1))
 
 func move():#Controls section
+	#Change color
+	if Input.is_action_just_pressed("change_player"):
+		match current_color:
+			0:#Green turn to red
+				next_color = Color.red
+				current_color = 1
+			1:#Red turn to Green
+				next_color = Color.green
+				current_color = 0
+	modulate = lerp(modulate, next_color, 0.08)
+	#Jump
 	if Input.is_action_just_pressed("ui_up") and (!current_state.has(STATE_FALL) and !current_state.has(STATE_JUMP)):
 		velocity.y -= jump
 		add_state(STATE_JUMP)
@@ -87,6 +99,8 @@ func hover():#Handles the floaty floaty
 			gravity = mass/20
 		else:
 			gravity = mass
-	
+
+
+
 func _on_control_timeout():
 	remove_state(STATE_CONTROLLED)
