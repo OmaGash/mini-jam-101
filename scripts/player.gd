@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal color_changed
+
 export var speed = 250#Movement speed
 export var mass = 50
 export var gravity = 50#Gravity Falls
@@ -62,9 +64,11 @@ func move():#Controls section
 			0:#Green turn to red
 				next_color = Color.red
 				current_color = 1
+				emit_signal("color_changed", 1)
 			1:#Red turn to Green
 				next_color = Color.green
 				current_color = 0
+				emit_signal("color_changed", 0)
 	modulate = lerp(modulate, next_color, 0.08)
 	#Jump
 	if Input.is_action_just_pressed("ui_up") and (!current_state.has(STATE_FALL) and !current_state.has(STATE_JUMP)):
@@ -94,7 +98,7 @@ func control():
 func hover():#Handles the floaty floaty
 	
 	if $hover.is_colliding():
-		if $hover.get_collider().get("current_state") != current_color:
+		if $hover.get_collider().get("current_color") != current_color and !$hover.get_collider().is_in_group("object"):
 			velocity.y = -jump/5
 			gravity = mass/20
 		else:
