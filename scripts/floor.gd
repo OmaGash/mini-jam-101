@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Node2D
 #Will handle the floor's behavior
 enum STATES{
 	STATE_GREEN,#0
