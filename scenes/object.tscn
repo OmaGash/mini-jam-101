@@ -7,7 +7,7 @@
 radius = 99.0
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 32, 32 )
+extents = Vector2( 31.5, 31.5 )
 
 [node name="object" type="KinematicBody2D" groups=["object"]]
 position = Vector2( 358, 236 )

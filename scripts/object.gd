@@ -6,6 +6,7 @@ export var jump = 1000#Jump Force
 export var repel_radius = 128#How far the social distancing should be
 var player_node: KinematicBody2D#Stores a reference for the player's node
 var velocity: Vector2
+var rays_colliding:Array = []#needs both rays colliding to consider a goal [ray1. ray2]
 var current_color = 0#0 is green, 1 is red
 enum{
 	GREEN,
@@ -19,20 +20,33 @@ enum STATE{
 var current_state:int = STATE.NEUTRAL
 func _ready():
 	$"../player".connect("color_changed", self, "_player_color_changed")
-
+	
+	modulate = Color.green if current_color == GREEN else Color.red
+	
 func _physics_process(delta):
 	velocity.y += gravity
-	modulate = lerp(modulate, Color.green, 0.08) if current_color == GREEN else lerp(modulate, Color.red, 0.08)
+	
 	_hover()
 	_move()
 	velocity = move_and_slide(velocity, Vector2(0,-1))
 
 func _hover():#Handles the floaty floaty
+	if !has_node("hover"):
+		modulate = lerp(modulate, Color.white, 0.08)#Decolorize when done
+		return#dont run when hover detection node is deleted
+	
+	if rays_colliding.size() == 2:
+		g.current_score += 1
+		$Area2D.monitoring = false
+		$hover.queue_free()
+		return
+	
 	for ray in $hover.get_children():
 		if ray.is_colliding():
 			var similar_color = ray.get_collider().get("current_color") == current_color
 			if ray.get_collider().is_in_group("goal") and similar_color:
-				g.current_score += 1
+				if !rays_colliding.has(ray.name):#If one of the rays collided with goal, add the ray to the list
+					rays_colliding.append(ray.name)
 			if !similar_color:
 				velocity.y = -jump/5
 				gravity = mass/20

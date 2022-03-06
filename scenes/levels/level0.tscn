@@ -1,22 +1,25 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/floor.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://sprites/tiles.tres" type="TileSet" id=3]
+[ext_resource path="res://scripts/goal.gd" type="Script" id=4]
+[ext_resource path="res://scenes/object.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/level.gd" type="Script" id=6]
+[ext_resource path="res://scenes/camera.tscn" type="PackedScene" id=7]
 
 [node name="world" type="Node2D"]
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="player" parent="." instance=ExtResource( 2 )]
 
 [node name="floor1" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )
 show_collision = true
 collision_layer = 3
 format = 1
-tile_data = PoolIntArray( 327685, 1, 0, 393221, 1, 65540, 393222, 1, 10, 393223, 1, 10, 393224, 1, 10, 393225, 1, 10, 393226, 1, 11, 458756, 1, 196609, 458757, 1, 196613, 458758, 1, 196617, 458759, 1, 196617, 458760, 1, 196617, 458761, 1, 196617, 458762, 1, 196619 )
+tile_data = PoolIntArray( -65524, 1, 8, -65523, 1, 11, 12, 1, 65544, 13, 1, 131083, 65547, 1, 8, 65548, 1, 65541, 65549, 1, 131083, 131082, 1, 8, 131083, 1, 65545, 131084, 1, 196617, 131085, 1, 196614, 131086, 1, 3, 196618, 1, 131076, 196619, 1, 196619, 196622, 1, 65536, 262152, 1, 1, 262153, 1, 196610, 262154, 1, 131075, 262157, 1, 8, 262158, 1, 65543, 327688, 1, 65536, 327693, 1, 65544, 327694, 1, 131083, 393221, 1, 1, 393222, 1, 196610, 393223, 1, 196610, 393224, 1, 131075, 393229, 1, 65544, 393230, 1, 131083, 458757, 1, 65536, 458765, 1, 65544, 458766, 1, 131083, 524288, 1, 196609, 524289, 1, 196610, 524290, 1, 196610, 524291, 1, 196610, 524292, 1, 196610, 524293, 1, 131074, 524294, 1, 196610, 524295, 1, 196610, 524296, 1, 196610, 524297, 1, 196610, 524298, 1, 196610, 524299, 1, 196610, 524300, 1, 196610, 524301, 1, 196613, 524302, 1, 196619 )
 script = ExtResource( 1 )
 
 [node name="floor2" type="TileMap" parent="."]
@@ -24,6 +27,20 @@ tile_set = ExtResource( 3 )
 show_collision = true
 collision_layer = 3
 format = 1
-tile_data = PoolIntArray( 196620, 1, 8, 196621, 1, 10, 196622, 1, 10, 196623, 1, 11, 262156, 1, 65544, 262157, 1, 131081, 262158, 1, 131081, 262159, 1, 131083, 327692, 1, 65544, 327693, 1, 131081, 327694, 1, 131078, 327695, 1, 196619, 393228, 1, 196616, 393229, 1, 196617, 393230, 1, 196619 )
 script = ExtResource( 1 )
 current_color = 1
+
+[node name="goal" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+collision_layer = 3
+format = 1
+script = ExtResource( 4 )
+
+[node name="player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 576, 160 )
+
+[node name="object" parent="." instance=ExtResource( 5 )]
+position = Vector2( 768, 288 )
+
+[node name="Camera2D" parent="." instance=ExtResource( 7 )]
+player_scene = NodePath("../player")
