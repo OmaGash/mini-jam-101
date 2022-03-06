@@ -2,6 +2,11 @@ extends KinematicBody2D
 
 signal color_changed
 
+enum COLOR{
+	GREEN,
+	RED
+}
+export(COLOR) var current_color:= COLOR.GREEN#0 is green, 1 is red
 export var speed = 250#Movement speed
 export var mass = 50
 export var gravity = 50#Gravity Falls
@@ -9,8 +14,7 @@ export var jump = 1000#Jump Force
 var dir = 1#Direction currently facing, 1 for right and -1 for left
 var velocity: Vector2
 var current_state = []#All the states the player is currently in
-var current_color = 0#0 is green, 1 is red
-var next_color: Color = Color.green#Green default
+var next_color: Color
 enum {
 	STATE_IDLE,#0
 	STATE_WALK,#1
@@ -27,7 +31,7 @@ func _remove_state(state: int):#Remove state only once it's included.
 		current_state.erase(state)
 
 func _ready():
-	pass
+	next_color = Color.green if current_color == COLOR.GREEN else Color.red#Green default
 
 func _physics_process(delta):
 	velocity.y += gravity

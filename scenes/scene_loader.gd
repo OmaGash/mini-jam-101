@@ -11,13 +11,14 @@ enum STATUS{
 var current_status: int
 
 func _ready():
+	current_status = STATUS.DONE
 	pause_mode = Node.PAUSE_MODE_PROCESS
 
 var max_loading_time = 10000
 
 func load_scene(path_to_scene: String, current_scene: Node):
 	var loader = ResourceLoader.load_interactive(path_to_scene)
-	
+	if current_status != STATUS.DONE: return
 	current_status = STATUS.LOADING
 	if loader == null:
 		current_status = STATUS.ERROR

@@ -10,10 +10,10 @@ config_version=4
 
 [application]
 
-config/name="mini game jam"
-run/main_scene="res://scenes/levels/level0.tscn"
+config/name="Re: Tract"
+run/main_scene="res://scenes/main_menu.tscn"
 run/disable_stderr=true
-config/icon="res://icon.png"
+config/icon="res://sprites/object.png"
 
 [autoload]
 

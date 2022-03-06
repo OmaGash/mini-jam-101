@@ -4,7 +4,7 @@
 [ext_resource path="res://sprites/player-sheet.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 31.5, 31.5 )
+extents = Vector2( 30, 30 )
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -120,6 +120,7 @@ tracks/0/keys = {
 }
 
 [node name="player" type="KinematicBody2D"]
+pause_mode = 1
 modulate = Color( 0, 1, 0, 1 )
 position = Vector2( 616, 273 )
 script = ExtResource( 1 )
@@ -165,13 +166,13 @@ anims/walk-jump = SubResource( 8 )
 [node name="hover" type="Node2D" parent="."]
 
 [node name="ray1" type="RayCast2D" parent="hover"]
-position = Vector2( -30.5, 0 )
+position = Vector2( -29, 0 )
 enabled = true
 cast_to = Vector2( 0, 64 )
 collision_mask = 2
 
 [node name="ray2" type="RayCast2D" parent="hover"]
-position = Vector2( 30.5, 0 )
+position = Vector2( 29, 0 )
 enabled = true
 cast_to = Vector2( 0, 64 )
 collision_mask = 2

@@ -1,5 +1,10 @@
 extends KinematicBody2D
 
+enum COLOR{
+	GREEN,
+	RED
+}
+export(COLOR) var current_color:= COLOR.GREEN#0 is green, 1 is red
 export var mass = 50
 export var gravity = 50#Gravity Falls
 export var jump = 1000#Jump Force
@@ -7,11 +12,8 @@ export var repel_radius = 128#How far the social distancing should be
 var player_node: KinematicBody2D#Stores a reference for the player's node
 var velocity: Vector2
 var rays_colliding:Array = []#needs both rays colliding to consider a goal [ray1. ray2]
-var current_color = 0#0 is green, 1 is red
-enum{
-	GREEN,
-	RED
-}
+
+
 enum STATE{
 	FOLLOW,
 	REPEL,
@@ -21,7 +23,7 @@ var current_state:int = STATE.NEUTRAL
 func _ready():
 	$"../player".connect("color_changed", self, "_player_color_changed")
 	
-	modulate = Color.green if current_color == GREEN else Color.red
+	modulate = Color.green if current_color == COLOR.GREEN else Color.red
 	
 func _physics_process(delta):
 	velocity.y += gravity
@@ -35,7 +37,7 @@ func _hover():#Handles the floaty floaty
 		modulate = lerp(modulate, Color.white, 0.08)#Decolorize when done
 		return#dont run when hover detection node is deleted
 	
-	if rays_colliding.size() == 2:
+	if rays_colliding.size() == 2 and is_on_floor():
 		g.current_score += 1
 		$Area2D.monitoring = false
 		$hover.queue_free()
@@ -71,10 +73,10 @@ func _on_Area2D_body_entered(body):
 	if body.name == "player":
 		player_node = body
 		match body.get("current_color"):
-			GREEN:#Green
-				_react(GREEN)
-			RED:
-				_react(RED)
+			COLOR.GREEN:#Green
+				_react(COLOR.GREEN)
+			COLOR.RED:
+				_react(COLOR.RED)
 
 func _on_Area2D_body_exited(body):
 	if body.name == "player":

@@ -7,7 +7,7 @@
 radius = 99.0
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 31.5, 31.5 )
+extents = Vector2( 29, 29 )
 
 [node name="object" type="KinematicBody2D" groups=["object"]]
 position = Vector2( 358, 236 )
@@ -27,13 +27,13 @@ texture = ExtResource( 2 )
 [node name="hover" type="Node2D" parent="."]
 
 [node name="ray1" type="RayCast2D" parent="hover"]
-position = Vector2( -31, 0 )
+position = Vector2( -29, 0 )
 enabled = true
 cast_to = Vector2( 0, 64 )
 collision_mask = 2
 
 [node name="ray2" type="RayCast2D" parent="hover"]
-position = Vector2( 31, 0 )
+position = Vector2( 29, 0 )
 enabled = true
 cast_to = Vector2( 0, 64 )
 collision_mask = 2

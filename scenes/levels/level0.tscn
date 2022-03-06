@@ -17,7 +17,7 @@ onready var anim: AnimationPlayer = $\"../hints\"
 var hints:Array = [
 	\"Q to change your color.\",
 	\"Similar colors attract, dissimilar repels.\",
-	\"You may use this ability to float yourself and objects.\",
+	\"You may use this ability to float yourself with objects.\",
 	\"E to change the environment's color.\",
 	\"The goal is to place this box on the similar-colored floor with a triangle on it.\"
 ]
@@ -202,6 +202,7 @@ position = Vector2( 96, 480 )
 position = Vector2( 736, 288 )
 
 [node name="ui" type="Control" parent="."]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = SubResource( 1 )
@@ -220,7 +221,8 @@ rect_pivot_offset = Vector2( 96, 32 )
 text = "Movement:
 A: Left
 D: Right
-W: Jump"
+W: Jump
+F: Quick Restart"
 align = 1
 valign = 1
 autowrap = true
