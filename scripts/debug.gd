@@ -8,6 +8,6 @@ func _process(delta):
 		get_tree().change_scene("res://world.tscn")
 	
 	$VBoxContainer/HBoxContainer/states.text = "States: " + str($"../player".current_state)
-
+	$VBoxContainer/HBoxContainer/current_animation.text = $"../player/AnimationPlayer".current_animation
 func level_completed():
 	$victory.popup_centered()

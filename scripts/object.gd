@@ -28,16 +28,16 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector2(0,-1))
 
 func _hover():#Handles the floaty floaty
-	
-	if $hover.is_colliding():
-		var similar_color = $hover.get_collider().get("current_color") == current_color
-		if $hover.get_collider().is_in_group("goal") and similar_color:
-			g.current_score += 1
-		if !similar_color:
-			velocity.y = -jump/5
-			gravity = mass/20
-		else:
-			gravity = mass
+	for ray in $hover.get_children():
+		if ray.is_colliding():
+			var similar_color = ray.get_collider().get("current_color") == current_color
+			if ray.get_collider().is_in_group("goal") and similar_color:
+				g.current_score += 1
+			if !similar_color:
+				velocity.y = -jump/5
+				gravity = mass/20
+			else:
+				gravity = mass
 
 func _move():#Do the following/repelling
 	match current_state:

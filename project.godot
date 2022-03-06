@@ -66,6 +66,11 @@ reset={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="base"
+2d_physics/layer_2="floor check"
+
 [physics]
 
 common/enable_pause_aware_picking=true

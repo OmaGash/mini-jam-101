@@ -14,6 +14,7 @@ __meta__ = {
 [node name="floor1" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )
 show_collision = true
+collision_layer = 3
 format = 1
 tile_data = PoolIntArray( 327685, 1, 0, 393221, 1, 65540, 393222, 1, 10, 393223, 1, 10, 393224, 1, 10, 393225, 1, 10, 393226, 1, 11, 458756, 1, 196609, 458757, 1, 196613, 458758, 1, 196617, 458759, 1, 196617, 458760, 1, 196617, 458761, 1, 196617, 458762, 1, 196619 )
 script = ExtResource( 1 )
@@ -21,6 +22,7 @@ script = ExtResource( 1 )
 [node name="floor2" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )
 show_collision = true
+collision_layer = 3
 format = 1
 tile_data = PoolIntArray( 196620, 1, 8, 196621, 1, 10, 196622, 1, 10, 196623, 1, 11, 262156, 1, 65544, 262157, 1, 131081, 262158, 1, 131081, 262159, 1, 131083, 327692, 1, 65544, 327693, 1, 131081, 327694, 1, 131078, 327695, 1, 196619, 393228, 1, 196616, 393229, 1, 196617, 393230, 1, 196619 )
 script = ExtResource( 1 )
