@@ -192,7 +192,7 @@ current_color = 1
 tile_set = ExtResource( 3 )
 collision_layer = 3
 format = 1
-tile_data = PoolIntArray( 458763, 2, 0, 524296, 1, 196609, 524297, 1, 196610, 524298, 1, 196610, 524299, 1, 196611 )
+tile_data = PoolIntArray( 458762, 2, 0, 524296, 1, 196609, 524297, 1, 196610, 524298, 1, 196610, 524299, 1, 196611 )
 script = ExtResource( 4 )
 
 [node name="player" parent="." instance=ExtResource( 2 )]

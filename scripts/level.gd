@@ -8,3 +8,8 @@ func _ready():
 
 func _Print_goal():
 	print("kjsadfhklhdsflkjsdfh")
+
+func _process(delta):
+	if Input.is_action_just_pressed("reset") and loader.current_status == loader.STATUS.DONE:
+		loader.load_scene("res://scenes/levels/level0.tscn", self)
+		
