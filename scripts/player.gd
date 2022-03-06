@@ -109,19 +109,21 @@ func _move():#Controls section
 func _controlled():
 	if current_state.has(STATE_CONTROLLED): return#Don't run if already stunned.
 	_add_state(STATE_CONTROLLED)
-	$time.show()
+	$tooltip.show()
 	$control.start()
 	while !$control.is_stopped():
-		$time.text = str(int($control.time_left)+1)
+		$tooltip.text = str(int($control.time_left)+1)
 		yield(get_tree(), "idle_frame")
-	$time.hide()
+	$tooltip.hide()
 	
 func _hover():#Handles the floaty floaty
 	for raycast in $hover.get_children():
 		if raycast.is_colliding():
+			#If floor is different color
 			if raycast.get_collider().get("current_color") != current_color and !raycast.get_collider().is_in_group("object"):
 				velocity.y = -jump/5
 				gravity = mass/20
+				_add_state(STATE_JUMP)
 			else:
 				gravity = mass
 

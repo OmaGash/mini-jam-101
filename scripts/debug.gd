@@ -1,6 +1,8 @@
 extends Control
 
 func _ready():
+	if !g.debug:
+		queue_free()
 	g.connect("level_completed", self, "level_completed")
 
 func _process(delta):

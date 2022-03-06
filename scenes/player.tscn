@@ -135,7 +135,7 @@ vframes = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="time" type="Label" parent="."]
+[node name="tooltip" type="Label" parent="."]
 visible = false
 margin_left = -32.0
 margin_top = -48.0
